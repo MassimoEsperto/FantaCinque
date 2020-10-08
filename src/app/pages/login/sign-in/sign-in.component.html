@@ -1,0 +1,112 @@
+<!-- 
+<div class="inventory-body">
+
+    <div class="flex-central mt-62">
+
+        <div class="card">
+           
+                <div class="flex-central">
+                    <div class="titolo">LOGIN</div>
+                </div>
+            
+            <form #loggato="ngForm" (submit)="login(loggato)">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-user"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <input type="text" id="name" pInputText [(ngModel)]="loggato.username" name="username">
+                        <label for="name">Username</label>
+                    </span>
+                </div>
+                <br>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-eye-slash"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <input type="password" id="psw" pInputText [(ngModel)]="loggato.password" name="password">
+                        <label for="psw">Password</label>
+                    </span>
+                </div>
+                <br>
+                <p-button  type="submit" label="Accedi"
+                    ></p-button>
+            </form>
+          
+            <p-footer>
+                <p>Non sei registrato? <a routerLink="/register">Fallo qui!</a></p>
+                <p>Dimenticato la password? <a routerLink="/recupera-password">Recupera qui!</a></p>
+            </p-footer>
+        </div>
+
+    </div>
+
+</div>
+-->
+<div class="inventory-body">
+
+    <div class="flex-central mt-62">
+
+<!-- Material form login -->
+<mdb-card>
+
+    <mdb-card-header class="danger-color white-text text-center py-4">
+      <h5>
+        <strong>Sign in</strong>
+      </h5>
+    </mdb-card-header>
+  
+  
+    <!--Card content-->
+    <mdb-card-body class="px-lg-5 pt-0">
+  
+      <!-- Form -->
+      <form class="text-center mt-16" style="color: #757575;" #loggato="ngForm" (submit)="login(loggato)">
+  
+       <!-- Email -->
+    <input type="text" id="username" class="form-control mb-4" placeholder="Username" [(ngModel)]="loggato.username" name="username" required />
+  
+    <!-- Password -->
+    <input type="password" id="psw" class="form-control mb-4" placeholder="Password" [(ngModel)]="loggato.password" name="password" required />
+  
+         <!-- Sign in button -->
+         <div *ngIf="loggato.invalid">
+    <button mdbBtn color="danger" block="true" class="my-4" type="button" disabled>Entra</button>
+</div>
+<div *ngIf="!loggato.invalid">
+    <button mdbBtn  color="danger" block="true" class="my-4" type="submit" mdbWavesEffect>Entra</button>
+</div>
+  
+       
+        <!-- Forgot password -->
+        <p class="hint nom">Dimenticato la password? <a routerLink="/recupera-password">Recupera qui!</a></p>
+       <!-- Register -->
+        <p>Non sei registrato? <a routerLink="/register">Fallo qui!</a></p>
+       
+          <!-- Social login -->
+    <p>Oppure entra con:</p>
+  
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="facebook"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="twitter"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="linkedin"></mdb-icon>
+    </a>
+    <a type="button" class="light-blue-text mx-2">
+      <mdb-icon fab icon="github"></mdb-icon>
+    </a>
+  
+      </form>
+      <!-- Form -->
+  
+    </mdb-card-body>
+  
+  </mdb-card>
+  <!-- Material form login -->
+
+  </div>
+  </div>
