@@ -2,6 +2,7 @@ import { Component, AfterViewInit, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideInAnimation } from './module/animations';
 
+
 @Component({
     selector: 'app-root',
     animations: [
@@ -9,7 +10,8 @@ import { slideInAnimation } from './module/animations';
         // animation triggers go here
     ],
     template: ` <div [@routeAnimations]="prepareRoute(outlet)" >
-              <router-outlet #outlet="outlet"></router-outlet></div>`
+              <router-outlet #outlet="outlet"></router-outlet></div>
+              <my-alert></my-alert>`
 
 })
 export class AppComponent implements AfterViewInit {
@@ -26,4 +28,5 @@ export class AppComponent implements AfterViewInit {
         return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
     }
 
+   
 }
