@@ -1,7 +1,8 @@
-//----------------------------------*\
-// Fonts
-//----------------------------------*/
+@import 'assets/css/padding.scss';
+@import 'assets/css/margin.scss';
 @import 'assets/fonts/scss/_fonts.scss';
+
+
 // primary font
 $primary_font: 'Paint';
 // font-weight
@@ -30,13 +31,31 @@ $md:720px;
 $lg:960px;
 $xl:1080px;
 
-.inventory-body {
-    position: fixed;
-    min-width: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
+.gradient-body_old {
+
     background-image: url("assets/img/gradiente.gif");
-    background-size: cover;
     background-repeat: no-repeat;
-  }
+    background-size: 100% 100%;
+    
+}
+
+.gradient-body {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  background-image: url("assets/img/gradiente.gif");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.flex-central{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.form-control {
+  border-radius: 10px;
+}
+
