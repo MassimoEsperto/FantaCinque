@@ -14,8 +14,8 @@ import { PageRoutingModule } from './page-routing.module';
   imports: [
     CommonModule,
     PageRoutingModule,
-    FormsModule,                               // <========== Add this line!
-    ReactiveFormsModule,                      // <========== Add this line!
+    FormsModule,                              
+    ReactiveFormsModule                    
   
   ],
   providers: [AuthGuard]
