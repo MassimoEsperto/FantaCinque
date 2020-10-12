@@ -46,6 +46,12 @@ export class HttpSenderService {
     }
   }
 
+  scadenza() {
+    let primaDate = new Date();
+    primaDate.setHours(primaDate.getHours() + 2);
+
+    return primaDate;
+  }
 
 
   handleError(response: HttpErrorResponse) {
