@@ -78,6 +78,16 @@ export class AuthService extends HttpSenderService {
     localStorage.setItem('tk-user', tkuser);
   }
 
+   /**
+   * salva il token in sessione
+   * @param tkuser 
+   */
+  setToken(tkuser: any) {
+    tkuser.scadenza = this.scadenza().toString();
+    let input=JSON.stringify(tkuser)
+    localStorage.setItem('tk-user', input);
+  }
+
 /**
  * recupera la password
  * @param username 
