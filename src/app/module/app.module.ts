@@ -14,8 +14,9 @@ import { RegisterComponent } from '../pages/login/register/register.component';
 import { RecuperaPasswordComponent } from '../pages/login/recupera-password/recupera-password.component';
 import { PageModule } from './page.module';
 import { AppCustomFrameworkModule } from './framework.module';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from './shared.module';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     PageModule,
     AppCustomFrameworkModule,
-    MDBBootstrapModule.forRoot()
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
