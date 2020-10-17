@@ -1,6 +1,19 @@
-<p>info-utente works!</p>
+<div *ngIf="!loading_page" class="page">
+  <p>ADMIN!</p>
+  <p>Work in progress...</p>
 
-
-<input type="file"  name="myfile" (change)="selectFile($event)" />
-<br>
-<img src="assets/upload/admin.png">
+  <div class="container" style="text-align: center;">
+    <h3>Cambia Immagine</h3>
+    <div class="image-preview mt-16" *ngIf="previewUrl">
+      <img [src]="previewUrl" width="220" />
+    </div>
+    <div class="image-preview" *ngIf="!previewUrl">
+      <img src="assets/img/omino.png" width="220" />
+    </div>
+    <div class="mt-16">
+      <input type="file" name="image" class="upload" (change)="fileProgress($event)"/>
+    </div>
+      <my-button [submit]="false" [color]="'danger'" [block]="true" [disabled]="!fileData" 
+      [label]="'INVIA'" [loading]="loading_btn" (click)="uploadFile()"></my-button>
+  </div>
+</div>

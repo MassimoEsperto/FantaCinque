@@ -54,6 +54,12 @@ $xl:1080px;
   justify-content: center;
 }
 
+.flex-start{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 .form-control {
   border-radius: 10px;

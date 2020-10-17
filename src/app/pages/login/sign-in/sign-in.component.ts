@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { SpinnerService } from 'src/app/services/spinner.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 import { MyToken } from 'src/app/classes/models/my-token';
 import { GlobalComponent } from 'src/app/classes/utils/global-component';
-import { Utils } from 'src/app/classes/utils/utils';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -13,12 +14,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class SignInComponent extends GlobalComponent implements OnInit {
 
-  ngAfterViewInit() { }
   utente: MyToken;
 
   constructor(
-    private elementRef: ElementRef,
     private router: Router,
+    private spinner:SpinnerService,
     private alert: AlertService,
     private service: AuthService) {
     super();
@@ -28,28 +28,27 @@ export class SignInComponent extends GlobalComponent implements OnInit {
 
   /**
    * 
-   * @param loggami effettivo login
+   * @param element effettivo login
    */
-  login(loggami) {
+   
+  login(element:any) {
 
-    let usr = loggami.value;
+    let usr = element.value;
     this.loading_btn = true;
 
     this.service.login(usr.username, usr.password)
+    .pipe( finalize(() =>  this.resetLoading()))
       .subscribe({
 
         next: (result: any) => {
-          this.resetSucces()//nessun alert poichè deve navigare
           this.utente = result;
-          // this.utente.scadenza = this.service.scadenza().toString();
-          // this.service.setLogged(JSON.stringify(this.utente));
           this.service.setToken(this.utente);
           this.router.navigate(['home/dashboard']);
 
         },
         error: (error: any) => {
-          this.alert.error(error);
-          this.stampaErrore(error);
+        this.alert.error(error);
+
         }
       })
 

@@ -9,15 +9,13 @@ import { HttpSenderService } from './http-sender-service';
 })
 export class UploadService extends HttpSenderService {
 
-  SERVER_URL: string = "http://fantashitcup.altervista.org/base/uploadFile.php";
-
   constructor(private http: HttpClient) {
     super();
   }
 
   public upload(formData) {
-
-    return this.http.post<any>(this.SERVER_URL, formData)
+    
+    return this.http.post<any>(`${this.buildURL("upload_file")}`, formData)
       .pipe(map((res) => {
 
         return res['data'];

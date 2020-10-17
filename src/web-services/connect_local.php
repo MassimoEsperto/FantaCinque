@@ -4,9 +4,9 @@ header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
 // db credentials
 define('DB_HOST', 'localhost');
-define('DB_USER', 'marescafantaeuropeo');
+define('DB_USER', 'fantashitcup');
 define('DB_PASS', '');
-define('DB_NAME', 'my_marescafantaeuropeo');
+define('DB_NAME', 'my_fantashitcup');
 
 
 // Connect with the database.
@@ -24,3 +24,4 @@ function connect()
 }
 
 $con = connect();
+

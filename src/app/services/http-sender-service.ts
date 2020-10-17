@@ -38,7 +38,7 @@ export class HttpSenderService {
 
   isPlayer() {
     let ruolo = this.ruolo();
-    if (ruolo == Ruolo.ADMIN || ruolo == Ruolo.VISITATORE) {
+    if (ruolo == Ruolo.ADMIN || ruolo == Ruolo.GIOCATORE) {
       return true
     }
     else {

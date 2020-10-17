@@ -10,5 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class ShowCaseComponent implements OnInit {
 
     ngOnInit() {}
+    file: File;
 
-}
+    onFileAdd(file: File) {
+    this.file = file;
+    }
+    
+    onFileRemove() {
+    this.file = null;
+    }
+    }

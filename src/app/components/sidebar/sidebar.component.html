@@ -1,10 +1,53 @@
-<p>sidebar works!</p>
-<nav>
-    <a class="button" routerLink="/home/default-page">default-page</a> |
-    <a class="button" routerLink="/home/dashboard">dashboard</a> |
-    <a class="button" routerLink="/home/info-utente">info-utente</a> |
-    
-    <a class="button" (click)="logOut()">logOut</a>
-  </nav>
-<hr>
-<router-outlet></router-outlet>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-1 navbar-dark red" [containerInside]="false" mdbStickyHeader>
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand>
+    <mdb-badge pill="true">
+      <img src="assets/upload/{{username}}.png"  class="avatar" width="24px" />
+    </mdb-badge>
+  </mdb-navbar-brand>
+  <a class="navbar-brand" href="#">{{username}}</a>
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="isAdmin" class="nav-item my-flex-start">
+        <mdb-icon fas icon="id-card-alt" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/gestione-admin" mdbWavesEffect>GESTIONE UTENTI</a>
+      </li>
+      <li *ngIf="isPlayer" class="nav-item my-flex-start">
+        <mdb-icon fas icon="poo" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/dashboard" mdbWavesEffect>HOME</a>
+      </li>
+      <li *ngIf="isPlayer" class="nav-item my-flex-start">
+        <mdb-icon fas icon="file-signature" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/formazione" mdbWavesEffect>INSERISCI FORMAZIONE</a>
+      </li>
+      <li *ngIf="isPlayer" class="nav-item my-flex-start">
+        <mdb-icon fas icon="umbrella-beach" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/calendario" mdbWavesEffect>CALENDARIO RISULTATI</a>
+      </li>
+      <li class="nav-item my-flex-start">
+        <mdb-icon fas icon="user-edit" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/info-utente" mdbWavesEffect>GESTIONE ACCOUNT</a>
+      </li>
+      <li class="nav-item my-flex-start">
+        <mdb-icon fas icon="user-alt-slash" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" (click)="logOut()" mdbWavesEffect>Log Out</a>
+      </li>
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+
+<!--/.Navbar-->
+<div class="mt-56" style="min-height:400px;">
+  <my-spinner></my-spinner>
+  <my-alert></my-alert>
+  <router-outlet></router-outlet>
+</div>
+<my-footer></my-footer>

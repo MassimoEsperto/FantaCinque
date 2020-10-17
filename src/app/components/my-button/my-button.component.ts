@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MyButtonComponent implements OnInit {
 
+  //parametri di input valorizzati di default
   @Input() submit=false;
   @Input() disabled = false;
   @Input() color:string="info";

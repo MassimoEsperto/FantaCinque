@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { MyAlertComponent } from '../components/my-alert/my-alert.component';
 import { MyButtonComponent } from '../components/my-button/my-button.component';
+import { MySpinnerComponent } from '../components/my-spinner/my-spinner.component';
 import { AppCustomFrameworkModule } from './framework.module';
 
 
@@ -18,11 +19,13 @@ import { AppCustomFrameworkModule } from './framework.module';
   ],
   declarations: [
     MyButtonComponent,
-    MyAlertComponent
+    MyAlertComponent,
+    MySpinnerComponent
   ],
   exports: [
     MyButtonComponent,
-    MyAlertComponent
+    MyAlertComponent,
+    MySpinnerComponent
   ],
   providers: [
   ],

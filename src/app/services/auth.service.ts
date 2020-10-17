@@ -4,6 +4,8 @@ import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http'
 import { map, catchError } from 'rxjs/operators';
 import { HttpSenderService } from './http-sender-service';
 import { MyToken } from '../classes/models/my-token';
+import { Utente } from '../classes/models/utente';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -93,10 +95,10 @@ export class AuthService extends HttpSenderService {
  * @param username 
  * @param email 
  */
-  recuperaPass(username: string, email: string) {
+  recupera(username: string, email: string) {
     const params = new HttpParams()
       .set('user', username).set('email', email);
-    return this.http.get<any>(`${this.buildURL("GestioneUtenti/recuperaPassword")}`, { params: params })
+    return this.http.get<any>(`${this.buildURL("rec_password")}`, { params: params })
       .pipe(map((res) => {
 
         return 'ok';
@@ -105,5 +107,14 @@ export class AuthService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+  insert(utente: Utente): Observable<Utente[]> {
+
+    return this.http.post(`${this.buildURL("register")}`, { data: utente })
+       .pipe(map((res) => {
+         let utente=res['data'];
+         return utente;
+       }),
+       catchError(this.handleError));
+   }
   
 }
