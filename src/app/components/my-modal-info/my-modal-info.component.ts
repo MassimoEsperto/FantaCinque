@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-my-modal-info',
+  selector: 'my-modal-info',
   templateUrl: './my-modal-info.component.html',
   styleUrls: ['./my-modal-info.component.scss']
 })
-export class MyModalInfoComponent implements OnInit {
+export class MyModalInfo implements OnInit {
 
   constructor() { }
 

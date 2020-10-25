@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalComponent } from 'src/app/classes/utils/global-component';
-import { MyModalValidateComponent } from 'src/app/components/my-modal-validate/my-modal-validate.component';
+import { MyModalValidate } from 'src/app/components/my-modal-validate/my-modal-validate.component';
 import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({

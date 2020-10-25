@@ -7,7 +7,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   templateUrl: './my-spinner.component.html',
   styleUrls: ['./my-spinner.component.scss']
 })
-export class MySpinnerComponent implements OnInit, OnDestroy {
+export class MySpinner implements OnInit, OnDestroy {
   private subscription: Subscription;
   loading: boolean;
 

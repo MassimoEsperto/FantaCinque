@@ -1,0 +1,22 @@
+.formazioni{
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.scontro {
+	background-image: url(../../../assets/img/campo2.png);
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
+}
+
+::ng-deep .mat-dialog-container {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 16px;
+    padding-top: 8px;
+    border-radius: 8px;
+    background-color: #007fff;
+    color: white;
+}
+

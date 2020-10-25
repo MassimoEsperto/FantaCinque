@@ -11,7 +11,7 @@ if(isset($postdata) && !empty($postdata))
 	
 
   // Validate.
-  if(trim($request->data->username) === '' || trim($request->data->ruolo)=== ''  || trim($request->data->id_ruolo)=== '' )
+  if(trim($request->data->username) === '' || trim($request->data->ruolo)=== '' )
   {
     die('valori non prelevati'. mysqli_error($con));
   }
@@ -19,7 +19,7 @@ if(isset($postdata) && !empty($postdata))
 	// Sanitize.
 	$username = mysqli_real_escape_string($con, trim($request->data->username));
 	$email = mysqli_real_escape_string($con, trim($request->data->email));
-	$id_ruolo= mysqli_real_escape_string($con, trim($request->data->id_ruolo)); 
+	$id_ruolo=2; 
 	$ruolo = mysqli_real_escape_string($con, trim($request->data->ruolo)); 
   
    	$subject = "Modifica account";

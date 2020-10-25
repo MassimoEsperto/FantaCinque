@@ -3,16 +3,16 @@
 require 'connect_local.php';
 
 // Extract, validate and sanitize the id.
-$username = ($_GET['username'] !== null && $_GET['username'] !== '')? mysqli_real_escape_string($con, trim($_GET['username'])) : false;
+$id_utente = ($_GET['id_utente'] !== null && $_GET['id_utente'] !== '')? mysqli_real_escape_string($con, trim($_GET['id_utente'])) : false;
 
 
-if(!$username)
+if(!$id_utente)
 {
   die('valori non prelevati'. mysqli_error($con));
 }
 
 // Delete.
-$sql = "DELETE FROM `utenti` WHERE `username` ='{$username}' LIMIT 1";
+$sql = "DELETE FROM `utenti` WHERE `id_utente` ='{$id_utente}' LIMIT 1";
 
 if(mysqli_query($con, $sql))
 {

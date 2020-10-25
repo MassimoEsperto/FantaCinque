@@ -1,13 +1,13 @@
 <div *ngIf="!loading_page" class="page">
-  
+
   <mat-tab-group backgroundColor="primary" mat-align-tabs="center">
     <div *ngFor="let num of giornate">
-    <mat-tab label="{{num}}° GIORNATA">
-      <risultati [num]="num" [palinsesto]="palinsesto"></risultati>
-    </mat-tab>
-  </div>
-   
+      <mat-tab label="{{num}}° GIORNATA">
+        <div class="pt-16">
+          <risultati [num]="num" [palinsesto]="palinsesto"></risultati>
+        </div>
+      </mat-tab>
+    </div>
+
   </mat-tab-group>
-  </div>
- 
-  
+</div>

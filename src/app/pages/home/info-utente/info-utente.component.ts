@@ -62,7 +62,6 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
     this.username = this.service.username()
     this.id_utente = this.service.id_utente();
     this.element=this.service.getToken();
-    console.log("this.element",this.element)
   }
 
   uploadFile() {

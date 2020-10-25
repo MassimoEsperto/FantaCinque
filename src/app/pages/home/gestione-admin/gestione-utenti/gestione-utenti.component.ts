@@ -7,7 +7,7 @@ import { AdminService } from 'src/app/services/admin.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { MatDialog } from '@angular/material/dialog';
-import { MyModalValidateComponent } from 'src/app/components/my-modal-validate/my-modal-validate.component';
+import { MyModalValidate } from 'src/app/components/my-modal-validate/my-modal-validate.component';
 import { Utils } from 'src/app/classes/utils/utils';
 
 @Component({
@@ -101,7 +101,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
   }
 
   onDelete(id: any, id_utente: string) {
-    const dialogRef = this.dialog.open(MyModalValidateComponent);
+    const dialogRef = this.dialog.open(MyModalValidate);
     dialogRef.afterClosed().subscribe(result => {
       if (result)
         this.remove(id, id_utente);
@@ -109,7 +109,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
   }
 
   onValidate(element: Utente) {
-    const dialogRef = this.dialog.open(MyModalValidateComponent);
+    const dialogRef = this.dialog.open(MyModalValidate);
     dialogRef.afterClosed().subscribe(result => {
       if (result)
         this.validate(element);

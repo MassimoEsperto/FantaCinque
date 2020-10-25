@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './my-button.component.html',
   styleUrls: ['./my-button.component.scss']
 })
-export class MyButtonComponent implements OnInit {
+export class MyButton implements OnInit {
 
   //parametri di input valorizzati di default
   @Output() myClick= new EventEmitter();

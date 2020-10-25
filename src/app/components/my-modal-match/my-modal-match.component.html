@@ -1,0 +1,36 @@
+<div style="text-align: center;">
+    <h4>CHE MATCH</h4>
+</div>
+
+<div class="flex-between pb-16">
+    <div>
+        <h5>{{data[0].squadra}}</h5>
+    </div>
+    <div *ngIf="data[5]">
+        <h5>{{data[5].squadra}}</h5>
+    </div>
+</div>
+
+<div class="flex-center scontro">
+    <div class="formazioni">
+        <div *ngFor="let item of data.slice(0, 5)" class="flex-between">
+            <div class="pl-8">
+                {{item.calciatore}}
+            </div>
+            <div class="pl-8 pr-8">
+                {{item.voto}}
+            </div>
+        </div>
+
+    </div>
+    <div class="formazioni">
+        <div *ngFor="let item of data.slice(5, 10)" class="flex-between">
+            <div>
+                {{item.calciatore}}
+            </div>
+            <div class="pl-8 pr-8">
+                {{item.voto}}
+            </div>
+        </div>
+    </div>
+</div>

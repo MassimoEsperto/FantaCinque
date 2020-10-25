@@ -7,7 +7,7 @@ import { AlertService } from 'src/app/services/alert.service';
     templateUrl: './my-alert.component.html',
     styleUrls: ['./my-alert.component.scss']
 })
-export class MyAlertComponent implements OnInit, OnDestroy {
+export class MyAlert implements OnInit, OnDestroy {
     private subscription: Subscription;
     message: any;
 

@@ -13,12 +13,16 @@ if(isset($postdata) && !empty($postdata))
   // Validate.
   if(trim($request->data->username) === '' || trim($request->data->email)=== '' )
   {
-    die('valori non prelevati'. mysqli_error($con));
+    header("HTTP/1.1 500 Internal Server Error");
+	header('Content-Type: application/json; charset=UTF-8');
+	die(json_encode(array('message' => 'valori non prelevati', 'code' => 400)));
   }
   
   if(trim($request->data->password) === '' || trim($request->data->squadra)=== '' )
   {
-    die('valori non prelevati'. mysqli_error($con));
+    header("HTTP/1.1 500 Internal Server Error");
+	header('Content-Type: application/json; charset=UTF-8');
+	die(json_encode(array('message' => 'valori non prelevati', 'code' => 400)));
   }
   
     // Sanitize.
@@ -87,7 +91,7 @@ if(isset($postdata) && !empty($postdata))
   {
     header("HTTP/1.1 500 Internal Server Error");
 	header('Content-Type: application/json; charset=UTF-8');
-	die(json_encode(array('message' => 'query errata', 'code' => 400)));
+	die(json_encode(array('message' => 'Valori già esistenti', 'code' => 400)));
   }
 }
 else

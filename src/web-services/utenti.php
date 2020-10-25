@@ -5,7 +5,7 @@
 require 'connect_local.php';
     
 $element = [];
-$sql = "SELECT username, email, ruolo,squadra FROM utenti";
+$sql = "SELECT id_utente,username,email,ruolo,squadra FROM utenti";
 
 if($result = mysqli_query($con,$sql))
 {
@@ -16,6 +16,7 @@ if($result = mysqli_query($con,$sql))
 		$element[$ele]['squadra'] = $row['squadra'];
 		$element[$ele]['email'] = $row['email'];
 		$element[$ele]['ruolo'] = $row['ruolo'];
+        $element[$ele]['id'] = $row['id_utente'];
 		$ele++;
 	}
     

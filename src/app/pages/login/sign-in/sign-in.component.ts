@@ -29,14 +29,14 @@ export class SignInComponent extends GlobalComponent implements OnInit {
    * 
    * @param element effettivo login
    */
-   
-  login(element:any) {
+
+  login(element: any) {
 
     let usr = element.value;
     this.loading_btn = true;
 
     this.service.login(usr.name, usr.password)
-    .pipe( finalize(() =>  this.resetLoading()))
+      .pipe(finalize(() => this.resetLoading()))
       .subscribe({
 
         next: (result: any) => {
@@ -46,8 +46,7 @@ export class SignInComponent extends GlobalComponent implements OnInit {
 
         },
         error: (error: any) => {
-          console.log("error",error)
-        this.alert.error(error);
+          this.alert.error(error);
 
         }
       })

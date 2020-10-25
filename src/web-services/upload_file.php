@@ -4,7 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
  
-$uploaddir = 'assets/upload/';
+$uploaddir = '../assets/upload/';
 $risposta = 'ko';
 $uploadfile = $uploaddir . basename($_FILES['myfile']['name']);
  
@@ -15,7 +15,9 @@ try{
      $risposta = 'ok';
 	} 
 catch(Error $e) {
-   	$risposta = $e;
+	header("HTTP/1.1 500 Internal Server Error");
+	header('Content-Type: application/json; charset=UTF-8');
+	die(json_encode(array('message' => 'errato caricamento', 'code' => 400)));
 }
     
 $ritono = [
@@ -25,4 +27,4 @@ $ritono = [
           
 echo json_encode(['data'=>$ritono]);
        
-?>
+?>

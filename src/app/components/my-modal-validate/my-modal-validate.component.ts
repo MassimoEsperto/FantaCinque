@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './my-modal-validate.component.html',
   styleUrls: ['./my-modal-validate.component.scss']
 })
-export class MyModalValidateComponent implements OnInit {
+export class MyModalValidate implements OnInit {
 
   constructor() {}
 

@@ -161,4 +161,18 @@ export class FormazioniService extends HttpSenderService {
       }),
         catchError(this.handleError));
   }
+
+  match(match: string) {
+
+    const params = new HttpParams()
+      .set('match', match);
+
+    return this.http.get<any>(`${this.buildURL("match_live")}`, { params: params })
+      .pipe(map((res) => {
+
+        return res['data'];
+
+      }),
+        catchError(this.handleError));
+  }
 }
