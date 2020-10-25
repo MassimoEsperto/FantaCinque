@@ -4,10 +4,10 @@
   <!-- Navbar brand -->
   <mdb-navbar-brand>
     <mdb-badge pill="true">
-      <img src="assets/upload/{{username}}.png"  class="avatar" width="24px" />
+      <img src="assets/upload/utente_{{id_utente}}.png"  (click)="info()" class="avatar" width="24px" />
     </mdb-badge>
   </mdb-navbar-brand>
-  <a class="navbar-brand" href="#">{{username}}</a>
+  <div class="navbar-brand" href="#">{{username}}</div>
   <!-- Collapsible content -->
   <links>
 
@@ -15,7 +15,7 @@
     <ul class="navbar-nav mr-auto">
       <li *ngIf="isAdmin" class="nav-item my-flex-start">
         <mdb-icon fas icon="id-card-alt" class="white-text pr-2"></mdb-icon>
-        <a class="nav-link waves-light" routerLink="/home/gestione-admin" mdbWavesEffect>GESTIONE UTENTI</a>
+        <a class="nav-link waves-light" routerLink="/home/gestione-admin" mdbWavesEffect>GESTIONE ADMIN</a>
       </li>
       <li *ngIf="isPlayer" class="nav-item my-flex-start">
         <mdb-icon fas icon="poo" class="white-text pr-2"></mdb-icon>
@@ -28,10 +28,6 @@
       <li *ngIf="isPlayer" class="nav-item my-flex-start">
         <mdb-icon fas icon="umbrella-beach" class="white-text pr-2"></mdb-icon>
         <a class="nav-link waves-light" routerLink="/home/calendario" mdbWavesEffect>CALENDARIO RISULTATI</a>
-      </li>
-      <li class="nav-item my-flex-start">
-        <mdb-icon fas icon="user-edit" class="white-text pr-2"></mdb-icon>
-        <a class="nav-link waves-light" routerLink="/home/info-utente" mdbWavesEffect>GESTIONE ACCOUNT</a>
       </li>
       <li class="nav-item my-flex-start">
         <mdb-icon fas icon="user-alt-slash" class="white-text pr-2"></mdb-icon>

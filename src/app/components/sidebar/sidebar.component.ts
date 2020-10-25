@@ -17,6 +17,7 @@ export class SidebarComponent implements AfterViewInit {
     private service: AuthService) { }
  
   username: string;
+  id_utente: string;
   isAdmin: boolean;
   isPlayer: boolean;
   
@@ -28,6 +29,7 @@ export class SidebarComponent implements AfterViewInit {
   ngOnInit() {
     this.isAdmin = this.service.isAdmin();
     this.username = this.service.username();
+    this.id_utente = this.service.id_utente();
     this.isPlayer = this.service.isPlayer();
    
   }
@@ -37,4 +39,7 @@ export class SidebarComponent implements AfterViewInit {
     this.router.navigate(['login']);
   }
 
+  info() {
+    this.router.navigate(['/home/info-utente']);
+  }
 }

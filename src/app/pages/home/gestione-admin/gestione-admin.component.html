@@ -1,5 +1,17 @@
 <div *ngIf="!loading_page" class="page">
-    <p>ADMIN!</p>
-    <p>Work in progress...</p>
-  </div>
- 
+
+  <mat-tab-group backgroundColor="primary" mat-align-tabs="center">
+    <mat-tab label="UTENTI">
+      <div class="pt-16">
+        <gestione-utenti></gestione-utenti>
+      </div>
+    </mat-tab>
+    <mat-tab label="CALCOLO">
+      <div class="pt-16">
+        <calcolo-voti></calcolo-voti>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+</div>

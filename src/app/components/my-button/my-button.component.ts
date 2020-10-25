@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'my-button',
@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class MyButtonComponent implements OnInit {
 
   //parametri di input valorizzati di default
+  @Output() myClick= new EventEmitter();
   @Input() submit=false;
   @Input() disabled = false;
   @Input() color:string="info";

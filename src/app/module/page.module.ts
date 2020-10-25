@@ -1,3 +1,4 @@
+import { RisultatiComponent } from './../pages/home/calendario/risultati/risultati.component';
 import { CalendarioComponent } from './../pages/home/calendario/calendario.component';
 import { GestioneAdminComponent } from './../pages/home/gestione-admin/gestione-admin.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,8 @@ import { AppCustomFrameworkModule } from './framework.module';
 import { SharedModule } from './shared.module';
 import { FormazioneComponent } from '../pages/home/formazione/formazione.component';
 import { InfoUtenteComponent } from '../pages/home/info-utente/info-utente.component';
+import { GestioneUtentiComponent } from '../pages/home/gestione-admin/gestione-utenti/gestione-utenti.component';
+import { CalcoloVotiComponent } from '../pages/home/gestione-admin/calcolo-voti/calcolo-voti.component';
 
 
 
@@ -23,7 +26,10 @@ import { InfoUtenteComponent } from '../pages/home/info-utente/info-utente.compo
     FooterComponent,
     GestioneAdminComponent,
     CalendarioComponent,
-    InfoUtenteComponent
+    InfoUtenteComponent,
+    GestioneUtentiComponent,
+    CalcoloVotiComponent,
+    RisultatiComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,34 @@
+<div *ngIf="!loading_page" class="page">
 
-  <div *ngIf="!loading_page" class="page">
-    <p>FORMAZIONE!</p>
-    <p>Work in progress...</p>
+  <div class="my-flex-wrap pb-32">
+    <div class="col-sm-12 col-md-6 col-lg-6 wrapper pa-0">
+      <h2>FORMAZIONE</h2>
+      <div class="container-squadra wrapper pa-8">
+        <div id="squadra" cdkDropList [cdkDropListData]="squadra" cdkDropListConnectedTo="rosa" class="squadra-list"
+          (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="validate">
+          <div class="squadra-box" *ngFor="let number of squadra" cdkDrag [cdkDragData]="number">
+            <div class="pt-16">{{number.tipo+" "+number.nome}}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6 wrapper pa-8">
+      <h2>ROSA</h2>
+      <div class="scroll-rosa">
+        <div class="container-rosa pt-8">
+          <div id="rosa" cdkDropList [cdkDropListData]="rosa" cdkDropListConnectedTo="squadra" class="rosa-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="rosa-box pr-16" *ngFor="let number of rosa" cdkDrag [cdkDragData]="number">
+              {{number.id+" "+number.tipo+" "+number.nome}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
- 
-
+  <div class="pa-8">
+    <my-button [submit]="false" [color]="'danger'" [block]="true" [disabled]="enableInsert()" [label]="'INVIA'"
+      [loading]="loading_btn" (myClick)="formazione()"></my-button>
+  </div>
+</div>

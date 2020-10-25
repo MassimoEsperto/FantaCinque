@@ -32,7 +32,7 @@ export class AlertService {
         this.reset();
     }
 
-    error(message: string, keepAfterRouteChange = false) {
+    error(message: string="Dispositivo non connesso", keepAfterRouteChange = false) {
         this.keepAfterRouteChange = keepAfterRouteChange;
         this.subject.next({ type: 'error', text: message });
         this.reset();

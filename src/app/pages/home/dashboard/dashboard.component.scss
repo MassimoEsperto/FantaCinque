@@ -1,1 +1,23 @@
 @import '../../../../assets/css/page.scss';
+
+
+
+::ng-deep .mat-form-field {
+    .mat-input-element {
+        color: white;
+    }
+    .mat-form-field-label {
+        color: slategray;
+    }
+    .mat-form-field-outline {
+        background-color: red;
+        color: white;
+        border-radius: 10px;
+    }
+    .mat-form-field-ripple {
+        background-color: slategray;
+    }
+    .mat-form-field-required-marker {
+        color: slategray;
+    }
+}

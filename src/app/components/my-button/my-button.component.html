@@ -9,5 +9,5 @@
     </button>
 </div>
 <div *ngIf="!disabled&&!loading">
-    <button mdbBtn  color="{{color}}" block="{{block}}" class="my-4" type="{{type}}" mdbWavesEffect>{{label}}</button>
+    <button mdbBtn  color="{{color}}" block="{{block}}" (click)="myClick.emit()" class="my-4" type="{{type}}" mdbWavesEffect>{{label}}</button>
 </div>

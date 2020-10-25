@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { HttpSenderService } from './http-sender-service';
 import { MyToken } from '../classes/models/my-token';
@@ -72,13 +72,6 @@ export class AuthService extends HttpSenderService {
 
   }
 
-  /**
-   * salva il token in sessione
-   * @param tkuser 
-   */
-  setLogged(tkuser: any) {
-    localStorage.setItem('tk-user', tkuser);
-  }
 
    /**
    * salva il token in sessione

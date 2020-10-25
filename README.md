@@ -31,3 +31,5 @@ ng g component component-name --skip-import
 
 ## build
 ng build --base-href "/fantacinque/"
+
+## in angular material $font-family:   'Paint'

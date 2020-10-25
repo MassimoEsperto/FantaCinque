@@ -1,7 +1,8 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
+import { Utente } from '../classes/models/utente';
 import { HttpSenderService } from './http-sender-service';
+import { map, catchError } from 'rxjs/operators';
 
 
 @Injectable({
@@ -23,5 +24,13 @@ export class UploadService extends HttpSenderService {
         catchError(this.handleError));
   }
 
+
+  update(utente: Utente) {
+    return this.http.put(`${this.buildURL("update_utente")}`, { data: utente })
+      .pipe(map((res) => {
+        return 'ok';
+      }),
+      catchError(this.handleError));
+  }
 
 }

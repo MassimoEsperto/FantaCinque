@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
+import { finalize } from 'rxjs/operators';
+import { Utente } from 'src/app/classes/models/utente';
 import { SUCCESS } from 'src/app/classes/utils/costanti';
 import { GlobalComponent } from 'src/app/classes/utils/global-component';
 import { AlertService } from 'src/app/services/alert.service';
@@ -22,10 +25,13 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
 
   fileData: File = null;
   previewUrl: any = null;
+  id_utente: string;
   username: string;
+  element:any;
 
   fileProgress(fileInput: any) {
     let tmp: File = <File>fileInput.target.files[0];
+   
     if (tmp.size > 40000) {
       this.alert.error("Immagine troppo grande");
       return;
@@ -46,27 +52,25 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
     }
+
+    this.alert.success(SUCCESS);
   }
 
 
 
   ngOnInit() {
-    this.username = this.service.username();
-
-    this.loading_page = true;
-    this.spinner.view();
-    setTimeout(() => {
-      this.spinner.clear()
-      this.loading_page = false;
-    }, 5000);
+    this.username = this.service.username()
+    this.id_utente = this.service.id_utente();
+    this.element=this.service.getToken();
+    console.log("this.element",this.element)
   }
 
   uploadFile() {
-
+ 
     this.loading_btn = true;
 
     const formData = new FormData();
-    formData.append('myfile', this.fileData, this.username + '.png');
+    formData.append('myfile', this.fileData,'utente_'+ this.id_utente + '.png');
 
     this.service.upload(formData)
       .subscribe({
@@ -84,5 +88,23 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
 
   }
 
+  update(element: any) {
+
+    this.loading_btn = true;
+    let utente:Utente=new Utente(element.username,'',element.email,element.squadra)
+    utente.id=element.id_utente
+    this.service.update(utente)
+      .pipe(finalize(() =>   
+      this.loading_btn = false))
+      .subscribe({
+        next: (result: any) => {
+          this.alert.error(SUCCESS);
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        },
+
+      })
+  }
 
 }

@@ -1,3 +1,4 @@
+import { Ruolo, ComboRuolo } from './enums';
 import { ElementRef } from '@angular/core';
 
 export class Utils{
@@ -9,4 +10,5 @@ export class Utils{
     public static backgroundWhite(elementRef: ElementRef){
         elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
     }
+
 }

@@ -1,5 +1,13 @@
 <div *ngIf="!loading_page" class="page">
-    <p>CALENDARIO!</p>
-    <p>Work in progress...</p>
+  
+  <mat-tab-group backgroundColor="primary" mat-align-tabs="center">
+    <div *ngFor="let num of giornate">
+    <mat-tab label="{{num}}° GIORNATA">
+      <risultati [num]="num" [palinsesto]="palinsesto"></risultati>
+    </mat-tab>
+  </div>
+   
+  </mat-tab-group>
   </div>
  
+  

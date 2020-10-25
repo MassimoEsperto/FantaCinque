@@ -1,21 +1,21 @@
 
 
- .immagine{
-    width:100%;
-    }
-    .firma{
-    width:20%;
-    }
+.immagine{
+      width:100%;
+  }
+  
+.firma{
+      width:20%;
+  }
     
-    .flex-center {
+.flex-center {
       display: flex;
       flex-wrap: wrap;
       flex-direction: row;
       justify-content: center;
-    }
+}
     
-    
-    .fisso {
+.fisso {
       position: fixed;
       bottom: 0;
       right: 0;
@@ -25,4 +25,4 @@
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-end;
-    }
+}

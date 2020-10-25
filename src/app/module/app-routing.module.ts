@@ -26,7 +26,7 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
-        data: { animation: 'HomePage' }
+        data: { animation: 'AboutPage' }
     },
     {
         path: 'recupera-password',

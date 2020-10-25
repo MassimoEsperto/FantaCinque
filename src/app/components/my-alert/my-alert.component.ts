@@ -18,10 +18,10 @@ export class MyAlertComponent implements OnInit, OnDestroy {
             .subscribe(message => {
                 switch (message && message.type) {
                     case 'success':
-                        message.cssClass = 'alert alert-success alert-dismissible';
+                        message.cssClass = 'my-alert-success';
                         break;
                     case 'error':
-                        message.cssClass = 'alert alert-warning alert-dismissible';
+                        message.cssClass = 'my-alert-error';
                         break;
                 }
 

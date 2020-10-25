@@ -22,8 +22,16 @@ export class HttpSenderService {
     return JSON.parse(localStorage.getItem("tk-user")).username
   }
 
+  id_utente() {
+    return JSON.parse(localStorage.getItem("tk-user")).id_utente
+  }
+
   ruolo() {
     return JSON.parse(localStorage.getItem("tk-user")).ruolo
+  }
+
+  getToken() {
+    return JSON.parse(localStorage.getItem("tk-user"))
   }
 
   isAdmin() {
@@ -55,6 +63,7 @@ export class HttpSenderService {
 
 
   handleError(response: HttpErrorResponse) {
+    console.log("response",response)
     return throwError(response.error.message);
   }
 }

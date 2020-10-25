@@ -38,12 +38,10 @@ export class RegisterComponent extends GlobalComponent implements OnInit {
       .pipe(finalize(() => this.resetLoading()))
       .subscribe({
         next: (result: any) => {
-          this.resetLoading();
-          this.alert.error(SUCCESS);
+          this.alert.success(SUCCESS);
           this.navigateToHome()
         },
         error: (error: any) => {
-          this.resetLoading();
           this.alert.error(error);
         },
 

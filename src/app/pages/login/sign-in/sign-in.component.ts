@@ -18,7 +18,6 @@ export class SignInComponent extends GlobalComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private spinner:SpinnerService,
     private alert: AlertService,
     private service: AuthService) {
     super();
@@ -36,7 +35,7 @@ export class SignInComponent extends GlobalComponent implements OnInit {
     let usr = element.value;
     this.loading_btn = true;
 
-    this.service.login(usr.username, usr.password)
+    this.service.login(usr.name, usr.password)
     .pipe( finalize(() =>  this.resetLoading()))
       .subscribe({
 
@@ -47,6 +46,7 @@ export class SignInComponent extends GlobalComponent implements OnInit {
 
         },
         error: (error: any) => {
+          console.log("error",error)
         this.alert.error(error);
 
         }
