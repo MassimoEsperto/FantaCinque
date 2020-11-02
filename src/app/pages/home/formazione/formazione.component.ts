@@ -109,7 +109,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
   }
 
   enableInsert() {
-    let ver: number = this.rosa.length;
+    let ver: number = this.squadra.length;
     let vel: boolean = ver == 5 ? false : true;
     return vel;
   }

@@ -4,13 +4,11 @@
   
 }
 
-.scontro {
-	background-image: url(../../../assets/img/campo2.png);
-	background-repeat: no-repeat, repeat;
-	background-size: cover;
-}
 
 ::ng-deep .mat-dialog-container {
+    background-image: url(../../../assets/img/kampot6.jpg);
+	background-repeat: no-repeat, repeat;
+	background-size: cover;
     padding-left: 8px;
     padding-right: 8px;
     padding-bottom: 16px;

@@ -7,6 +7,8 @@ import { RoseService } from 'src/app/services/rose.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import * as XLSX from 'xlsx';
 import { Rosa } from 'src/app/classes/models/rosa';
+import { MatDialog } from '@angular/material/dialog';
+import { MyModalValidate } from 'src/app/components/my-modal-validate/my-modal-validate.component';
 
 @Component({
   selector: 'gestione-rose',
@@ -18,6 +20,7 @@ export class GestioneRoseComponent extends GlobalComponent implements OnInit {
   constructor(
     private spinner: SpinnerService,
     private service: RoseService,
+    public dialog: MatDialog,
     private alert: AlertService) {
     super();
   }
@@ -50,7 +53,7 @@ export class GestioneRoseComponent extends GlobalComponent implements OnInit {
       let _EMPTY_0 = worksheet.A1['h']
     
       var arraylist: any = XLSX.utils.sheet_to_json(worksheet, { raw: true, defval: null });
-     
+    
       for (let element of arraylist) {
        
         let ruolo_iniz: string = element[_EMPTY_0]? element[_EMPTY_0].toString().trim():"";
@@ -118,4 +121,12 @@ export class GestioneRoseComponent extends GlobalComponent implements OnInit {
       })
   }
 
+  onAggiungiCalciatori() {
+  
+      const dialogRef = this.dialog.open(MyModalValidate);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result)
+        this.aggiungiCalciatori();
+      });
+  }
 }

@@ -8,6 +8,8 @@ import { AlertService } from 'src/app/services/alert.service';
 import { RoseService } from 'src/app/services/rose.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import * as XLSX from 'xlsx';
+import { MatDialog } from '@angular/material/dialog';
+import { MyModalValidate } from 'src/app/components/my-modal-validate/my-modal-validate.component';
 
 @Component({
   selector: 'gestione-squadre',
@@ -19,6 +21,7 @@ export class GestioneSquadreComponent extends GlobalComponent implements OnInit 
   constructor(
     private spinner: SpinnerService,
     private service: RoseService,
+    public dialog: MatDialog,
     private admin: AdminService,
     private alert: AlertService) {
     super();
@@ -96,6 +99,7 @@ export class GestioneSquadreComponent extends GlobalComponent implements OnInit 
 
         next: (result: any) => {
           this.alert.success(SUCCESS);
+          this.selectedTeam=[]
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -208,7 +212,10 @@ export class GestioneSquadreComponent extends GlobalComponent implements OnInit 
       lista: this.selectedTeam
     }
 
-    this.clean(payload);
-
+      const dialogRef = this.dialog.open(MyModalValidate);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result)
+        this.clean(payload);
+      });
   }
 }

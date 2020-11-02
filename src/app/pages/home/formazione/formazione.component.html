@@ -20,7 +20,7 @@
           <div id="rosa" cdkDropList [cdkDropListData]="rosa" cdkDropListConnectedTo="squadra" class="rosa-list"
             (cdkDropListDropped)="drop($event)">
             <div class="rosa-box pr-16" *ngFor="let number of rosa" cdkDrag [cdkDragData]="number">
-              {{number.id+" "+number.tipo+" "+number.nome}}</div>
+              {{number.tipo+" "+number.nome}}</div>
           </div>
         </div>
       </div>
