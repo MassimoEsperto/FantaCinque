@@ -1,0 +1,25 @@
+<?php
+/**
+ * Returns the list of user.
+ */
+require 'connect_local.php';
+    
+$element = [];
+$sql = "SELECT nome_calciatore FROM lista_calciatori";
+
+if($result = mysqli_query($con,$sql))
+{
+	$rows = array();
+    while($r = mysqli_fetch_assoc($result)) {
+        $rows[] = $r;
+	}
+
+ 	echo json_encode(['data'=>$rows]);
+}
+else
+{
+	header("HTTP/1.1 500 Internal Server Error");
+	header('Content-Type: application/json; charset=UTF-8');
+	die(json_encode(array('message' => 'query errata', 'code' => 400)));
+}
+?>

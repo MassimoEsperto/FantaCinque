@@ -26,7 +26,7 @@ export class FormazioniService extends HttpSenderService {
     const params = new HttpParams()
       .set('id_user', id_user);
 
-    return this.http.get<any>(`${this.buildURL("rosa")}`, { params: params })
+    return this.http.get<any>(`${this.buildURL("rosa_utente")}`, { params: params })
       .pipe(map((res) => {
 
         return res['data'];
@@ -175,4 +175,5 @@ export class FormazioniService extends HttpSenderService {
       }),
         catchError(this.handleError));
   }
+
 }

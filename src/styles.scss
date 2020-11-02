@@ -68,6 +68,20 @@ $xl:1080px;
   align-items: center;
 }
 
+.flex-colonna{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.flex-tra-fra{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .form-control {
   border-radius: 10px;
 }

@@ -1,0 +1,45 @@
+<label class="btn btn-default btn-file">
+  Update File
+  <input type="file" style="display: none;" (change)="importSquadre($event)"
+    accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+</label>
+
+<div *ngIf="formazioni.length" class="pt-64">
+  <h4 style="text-align: center;">ASSOCIA SQUADRA ALL'UTENTE</h4>
+  <div class="flex-tra-fra">
+    <div class="flex-colonna">
+      <mat-form-field appearance="outline">
+        <mat-label>Squadra</mat-label>
+        <mat-select (selectionChange)="onSelectedSquadra($event)">
+          <mat-option *ngFor="let element of formazioni" [value]="element">
+            {{element.utente}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngFor="let element of selectedTeam;let i=index">
+        {{i+1}}) {{element.nome}}
+      </div>
+    </div>
+    <div class="flex-colonna">
+      <mat-form-field appearance="outline">
+        <mat-label>Utente</mat-label>
+        <mat-select (selectionChange)="onSelectedUtente($event)">
+          <mat-option *ngFor="let element of utenti" [value]="element">
+            {{element.squadra}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div *ngIf="selectedUtente">USERNAME: </div>
+      <div *ngIf="selectedUtente">{{selectedUtente.username}}</div>
+      <div *ngIf="selectedUtente">SQUADRA: </div>
+      <div *ngIf="selectedUtente">{{selectedUtente.squadra}}</div>
+      <div *ngIf="selectedUtente">EMAIL: </div>
+      <div *ngIf="selectedUtente">{{selectedUtente.email}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="pa-8">
+  <my-button [submit]="false" [color]="'danger'" [block]="true" [disabled]="!selectedTeam||!selectedUtente" [label]="'INVIA'"
+    [loading]="loading_btn" (myClick)="onAssocia()"></my-button>
+</div>

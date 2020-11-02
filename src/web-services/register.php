@@ -79,7 +79,7 @@ if(isset($postdata) && !empty($postdata))
 	
     
 	try {
-    			mail($email,$subject,$message,$headers);
+    			mail($emailTo,$subject,$message,$headers);
                 echo json_encode(['data'=>$ele]);
 		} catch (Exception $e) {
                 header("HTTP/1.1 500 Internal Server Error");

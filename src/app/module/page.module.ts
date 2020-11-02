@@ -15,6 +15,8 @@ import { FormazioneComponent } from '../pages/home/formazione/formazione.compone
 import { InfoUtenteComponent } from '../pages/home/info-utente/info-utente.component';
 import { GestioneUtentiComponent } from '../pages/home/gestione-admin/gestione-utenti/gestione-utenti.component';
 import { CalcoloVotiComponent } from '../pages/home/gestione-admin/calcolo-voti/calcolo-voti.component';
+import { GestioneRoseComponent } from '../pages/home/gestione-admin/gestione-rose/gestione-rose.component';
+import { GestioneSquadreComponent } from '../pages/home/gestione-admin/gestione-squadre/gestione-squadre.component';
 
 
 
@@ -29,7 +31,9 @@ import { CalcoloVotiComponent } from '../pages/home/gestione-admin/calcolo-voti/
     InfoUtenteComponent,
     GestioneUtentiComponent,
     CalcoloVotiComponent,
-    RisultatiComponent
+    RisultatiComponent,
+    GestioneRoseComponent,
+    GestioneSquadreComponent
   ],
   imports: [
     CommonModule,
