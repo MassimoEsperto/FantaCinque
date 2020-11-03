@@ -45,6 +45,19 @@ export class FormazioniService extends HttpSenderService {
       catchError(this.handleError));
   }
 
+  getPartitaAttuale(id_user: string) {
+    const params = new HttpParams()
+      .set('id_user', id_user);
+
+    return this.http.get<any>(`${this.buildURL("partita_attuale")}`, { params: params })
+      .pipe(map((res) => {
+
+        return res['data'];
+
+      }),
+        catchError(this.handleError));
+  }
+
 
   insert(payload: any): Observable<any[]> {
 
