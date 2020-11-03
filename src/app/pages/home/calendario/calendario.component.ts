@@ -41,7 +41,7 @@ calendario() {
     .subscribe({
       next: (result: any) => {
         this.palinsesto = result;
-      
+      console.log("this.palinsesto ",this.palinsesto)
         let giornate = this.palinsesto.map(({ giornata }) => giornata);
         this.giornate= giornate.filter((n, i) => giornate.indexOf(n) === i);
       },
