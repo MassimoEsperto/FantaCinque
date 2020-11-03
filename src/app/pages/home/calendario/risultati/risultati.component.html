@@ -4,12 +4,14 @@
 <div *ngFor="let item of selected">
    
     <mdb-card>
-      
+
         <!--Card content-->
         <mdb-card-body style="cursor:pointer" (click)="viewMatch(item.partita)">
             <div class="squadre">
                 <div class="row col-4 col-sm-4 col-md-4 col-lg-4">
-                    <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio"><img src="assets/upload/admin.png"  class="avatar" width="24px" /></div>
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio">
+                        <img src="assets/upload/utente_{{item.id_casa}}.png"  class="avatar" width="24px" />
+                    </div>
                     <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio">
                         <label>
                             {{item.casa}} 
@@ -21,7 +23,9 @@
                      <span *ngIf="item.calcolato!='1'">VS</span>
                 </div>
                 <div class="row col-4 col-sm-4 col-md-4 col-lg-4">
-                    <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio"><img src="assets/upload/admin.png"  class="avatar" width="24px" /></div>
+                    <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio">
+                        <img src="assets/upload/utente_{{item.id_trasferta}}.png"  class="avatar" width="24px" />
+                    </div>
                     <div class="col-8 col-sm-8 col-md-6 col-lg-6 punteggio">
                         <label>
                             {{item.trasferta}} 
