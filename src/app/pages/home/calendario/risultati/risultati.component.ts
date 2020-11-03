@@ -26,6 +26,7 @@ export class RisultatiComponent implements OnInit {
 
   ngOnChanges() {
     this.selected = this.palinsesto.filter(e => e.giornata === this.num);
+    console.log("this.selected ",this.selected)
   }
 
 
