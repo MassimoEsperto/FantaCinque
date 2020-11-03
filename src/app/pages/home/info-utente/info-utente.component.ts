@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
 import { finalize } from 'rxjs/operators';
 import { Utente } from 'src/app/classes/models/utente';
-import { SUCCESS } from 'src/app/classes/utils/costanti';
+import { MAX_IMG, SUCCESS } from 'src/app/classes/utils/costanti';
 import { GlobalComponent } from 'src/app/classes/utils/global-component';
 import { AlertService } from 'src/app/services/alert.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
 import { UploadService } from 'src/app/services/upload.service';
 
 
@@ -18,8 +16,7 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
 
   constructor(
     private service: UploadService,
-    private alert: AlertService,
-    private spinner: SpinnerService) {
+    private alert: AlertService) {
     super();
   }
 
@@ -27,13 +24,13 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
   previewUrl: any = null;
   id_utente: string;
   username: string;
-  element:any;
+  element: any;
 
   fileProgress(fileInput: any) {
     let tmp: File = <File>fileInput.target.files[0];
-   
-    if (tmp.size > 40000) {
-      this.alert.error("Immagine troppo grande");
+
+    if (tmp.size > MAX_IMG) {
+      this.alert.error("Immagine troppo grande max "+MAX_IMG+" kb");
       return;
     }
     this.fileData = <File>fileInput.target.files[0];
@@ -52,8 +49,6 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
     }
-
-    this.alert.success(SUCCESS);
   }
 
 
@@ -61,26 +56,23 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
   ngOnInit() {
     this.username = this.service.username()
     this.id_utente = this.service.id_utente();
-    this.element=this.service.getToken();
+    this.element = this.service.getToken();
   }
 
   uploadFile() {
- 
+
     this.loading_btn = true;
 
     const formData = new FormData();
-    formData.append('myfile', this.fileData,'utente_'+ this.id_utente + '.png');
+    formData.append('myfile', this.fileData, 'utente_' + this.id_utente + '.png');
 
     this.service.upload(formData)
+      .pipe(finalize(() => this.loading_btn = false))
       .subscribe({
-
         next: (result: any) => {
-          this.resetLoading();
-          this.alert.error(SUCCESS);
-
+          this.alert.success(SUCCESS);
         },
         error: (error: any) => {
-          this.resetLoading();
           this.alert.error(error);
         }
       })
@@ -90,14 +82,13 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
   update(element: any) {
 
     this.loading_btn = true;
-    let utente:Utente=new Utente(element.username,'',element.email,element.squadra)
-    utente.id=element.id_utente
+    let utente: Utente = new Utente(element.username, '', element.email, element.squadra)
+    utente.id = element.id_utente
     this.service.update(utente)
-      .pipe(finalize(() =>   
-      this.loading_btn = false))
+      .pipe(finalize(() => this.loading_btn = false))
       .subscribe({
         next: (result: any) => {
-          this.alert.error(SUCCESS);
+          this.alert.success(SUCCESS);
         },
         error: (error: any) => {
           this.alert.error(error);
