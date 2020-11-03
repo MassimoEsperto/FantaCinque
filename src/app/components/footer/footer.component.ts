@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
   selector: 'my-footer',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private services: AdminService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(){this.versione=this.services.versione()}
 
+  versione:any;
 }
