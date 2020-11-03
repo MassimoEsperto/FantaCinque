@@ -66,4 +66,8 @@ export class HttpSenderService {
     console.log("response",response)
     return throwError(response.error.message);
   }
+
+  versione(){
+    return 1.2
+  }
 }
