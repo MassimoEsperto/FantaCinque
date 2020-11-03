@@ -117,8 +117,8 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
   //prepara la formazione da inserire
   formazione() {
     this.loading_btn = true;
-
-    this.service.getGiornataAttuale()
+    let id_utente = this.service.id_utente()
+    this.service.getPartitaAttuale(id_utente)
       .subscribe({
 
         next: (result: string) => {
