@@ -32,7 +32,7 @@ export class RegisterComponent extends GlobalComponent implements OnInit {
     let ut: any = element.value;
     this.loading_btn = true;
 
-    let newUtente: Utente = new Utente(ut.username, ut.password, ut.email, ut.squadra);
+    let newUtente: Utente = new Utente(ut.username, ut.password, ut.email, ut.squadra.toUpperCase());
 
     this.service.insert(newUtente)
       .pipe(finalize(() => this.resetLoading()))

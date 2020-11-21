@@ -82,7 +82,7 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
   update(element: any) {
 
     this.loading_btn = true;
-    let utente: Utente = new Utente(element.username, '', element.email, element.squadra)
+    let utente: Utente = new Utente(element.username, '', element.email, element.squadra.toUpperCase())
     utente.id = element.id_utente
     this.service.update(utente)
       .pipe(finalize(() => this.loading_btn = false))

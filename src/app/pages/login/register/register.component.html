@@ -27,8 +27,8 @@
                         maxlength="25" [(ngModel)]="element.mail" name="email" required email />
 
                     <!-- Password -->
-                    <input type="password" id="psw" class="form-control mb-4" placeholder="Password"
-                        [(ngModel)]="element.password" name="password" required />
+                    <input type="password" id="psw" class="form-control mb-4" placeholder="Password" minlength="8"
+                    maxlength="20" [(ngModel)]="element.password" name="password" required />
 
                     <!-- Squadra -->
                     <input type="text" id="squadra" class="form-control mb-4 mt-4" placeholder="Squadra" minlength="4"

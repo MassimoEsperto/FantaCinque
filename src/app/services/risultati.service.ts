@@ -24,4 +24,36 @@ export class RisultatiService extends HttpSenderService {
       }),
       catchError(this.handleError));
   }
+
+  getClassifica() {
+    return this.http.get(`${this.buildURL("classifica")}`).pipe(
+      map((res) => {
+
+        let classifiche: any = res['data'];
+        let girone: string = classifiche[0].girone;
+        let risultati = [];
+        let result = []
+        for (let gironi of classifiche) {
+          if (gironi.girone == girone) {
+            risultati.push(gironi)
+          }
+          else {
+
+            let single = { girone: girone, lista: risultati }
+            result.push(single)
+            risultati = []
+            risultati.push(gironi)
+            girone = gironi.girone;
+
+          }
+        }
+        girone = classifiche[classifiche.length - 1].girone;
+        let single = { girone: girone, lista: risultati }
+        result.push(single)
+
+        return result;
+
+      }),
+      catchError(this.handleError));
+  }
 }
