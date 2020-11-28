@@ -7,6 +7,7 @@ import { Rosa } from 'src/app/classes/models/rosa';
 import { FormazioniService } from 'src/app/services/formazioni.service';
 import { finalize } from 'rxjs/operators';
 import { AlertService } from 'src/app/services/alert.service';
+import { RisultatiService } from 'src/app/services/risultati.service';
 
 @Component({
   selector: 'formazione',
@@ -18,17 +19,19 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
   constructor(
     private spinner: SpinnerService,
     private alert: AlertService,
+    private risultati: RisultatiService,
     private service: FormazioniService) {
     super();
   }
 
   ngOnInit() {
-    this.getRosa(); //Calcola la rosa all'avvio
+    this.getPartitaAttuale(); //Calcola la rosa all'avvio
   }
 
   //dichiara le variabili
   rosa = [];
   squadra = [];
+  attuale: string;
 
 
   drop(event: CdkDragDrop<Rosa[]>) {
@@ -85,28 +88,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
     return true;
   }
 
-  getRosa() {
-    this.loading_page = true;
-    this.spinner.view();
-    let id_utente = this.service.id_utente();
 
-    this.service.getRosa(id_utente)
-      .pipe(finalize(() => {
-        this.spinner.clear(), this.loading_page = false;
-      }
-      ))
-      .subscribe({
-
-        next: (result: any) => {
-          this.rosa = result //assegna la rosa
-        },
-        error: (error: any) => {
-          this.alert.error(error);
-
-        }
-      })
-
-  }
 
   enableInsert() {
     let ver: number = this.squadra.length;
@@ -114,32 +96,31 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
     return vel;
   }
 
-  //prepara la formazione da inserire
-  formazione() {
-    this.loading_btn = true;
-    let id_utente = this.service.id_utente()
-    this.service.getPartitaAttuale(id_utente)
-      .subscribe({
+  sortedByRuoli() {
+    let sortedsquadra = this.squadra.sort((n1, n2) => {
+      if (n1.tipo < n2.tipo) {
+        return 1;
+      }
 
-        next: (result: string) => {
-          this.schieramento(result)
-        },
-        error: (error: any) => {
-          this.alert.error(error);
+      if (n1.tipo > n2.tipo) {
+        return -1;
+      }
 
-        }
-      })
+      return 0;
+    });
 
+    return sortedsquadra;
   }
 
+
   //inserisce materialmente nel db la formazione
-  schieramento(giornata: string) {
+  formazione() {
 
     let id_utente = this.service.id_utente();
-
+    this.loading_btn = true;
     let payload = {
       lista: [],
-      id_partita: giornata,
+      id_partita: this.attuale,
       id_utente: id_utente,
     }
 
@@ -164,5 +145,128 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
 
   }
 
+
+
+  getPartitaAttuale() {
+    this.loading_page = true;
+    this.spinner.view();
+    let id_utente = this.service.id_utente()
+    this.service.getPartitaAttuale(id_utente)
+      .subscribe({
+
+        next: (result: string) => {
+          this.attuale = result;
+          this.calendario();
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+
+        }
+      })
+
+  }
+
+
+  calendario() {
+    this.risultati.getCalendario()
+
+      .subscribe({
+        next: (result: any) => {
+          this.prossimoMatch(result);
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+        }
+      })
+  }
+
+
+  /**
+   * rosa al netto dello sfidante
+   * @param id_utente 
+   * @param sfidante a false se si gioca in casa
+   */
+  getRosaCasa(id_utente, sfidante) {
+
+    this.service.getRosa(id_utente)
+      .pipe(finalize(() => {
+        this.spinner.clear(), this.loading_page = false;
+      }
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          if (!sfidante)
+            this.rosa = result //assegna la rosa
+          else
+            this.calcolaRosa(result, sfidante);
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+
+        }
+      })
+
+  }
+
+  getRosaSfidante(id_utente, id_sfidante) {
+
+    this.service.getRosa(id_sfidante)
+      .pipe(finalize(() => {
+        this.spinner.clear(), this.loading_page = false;
+      }
+      ))
+      .subscribe({
+
+        next: (result: any) => {
+          this.getRosaCasa(id_utente, result);
+        },
+        error: (error: any) => {
+          this.alert.error(error);
+
+        }
+      })
+
+  }
+
+  /**
+   * calcola la rosa in base allo sfdante
+   * @param lista 
+   * @param sfidante 
+   */
+  calcolaRosa(lista: any, sfidante: any) {
+
+    let avviabile = []
+    for (let ele of lista) {
+      let doppiato = sfidante.some(x => x.id == ele.id);
+      if (!doppiato)
+        avviabile.push(ele);
+    }
+
+    this.rosa = avviabile;
+
+  }
+
+  /**
+   * se il prossimo turno prevede che l'utente giochi in casa 
+   * avrà a disposizione tutta la rosa, nel caso negativo 
+   * gli verranno sottratti i giocatori presenti già nella squadra di casa
+   * @param palinsesto 
+   */
+  prossimoMatch(palinsesto) {
+
+    let id_casa = this.service.id_utente();
+    let prossimo = palinsesto.find(x => x['partita'] == this.attuale);
+    if(!prossimo){
+      this.spinner.clear();
+      this.alert.error("Non sono previste partite col tuo account");
+    }else{
+    if (id_casa == prossimo.id_casa) {
+      this.getRosaCasa(prossimo.id_casa, false);
+    } else {
+      this.getRosaSfidante(prossimo.id_trasferta, prossimo.id_casa);
+    }
+  }
+  }
 
 }
