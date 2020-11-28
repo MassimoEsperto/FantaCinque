@@ -4,7 +4,7 @@ export class Utente {
   password: string;
   email: string;
   squadra: string;
-
+  ruolo: string;
 
   constructor(
     username: string,
