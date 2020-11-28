@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { finalize } from 'rxjs/operators';
 import { Utente } from 'src/app/classes/models/utente';
 import { MAX_IMG, SUCCESS } from 'src/app/classes/utils/costanti';
 import { GlobalComponent } from 'src/app/classes/utils/global-component';
+import { MyModalValidate } from 'src/app/components/my-modal-validate/my-modal-validate.component';
 import { AlertService } from 'src/app/services/alert.service';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -16,6 +18,7 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
 
   constructor(
     private service: UploadService,
+    public dialog: MatDialog,
     private alert: AlertService) {
     super();
   }
@@ -77,6 +80,14 @@ export class InfoUtenteComponent extends GlobalComponent implements OnInit {
         }
       })
 
+  }
+
+  onUpdate(element: any) {
+    const dialogRef = this.dialog.open(MyModalValidate);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.update(element);
+    });
   }
 
   update(element: any) {
