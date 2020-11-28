@@ -47,7 +47,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
       .subscribe({
         next: (result: Utente[]) => {
           this.utenti = result;
-          
+          console.log("utenti : "+JSON.stringify( this.utenti ));
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -61,8 +61,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
     this.spinner.view();
     this.admin.delete(id_utente)
       .pipe(finalize(() => {
-        this.spinner.clear(),
-          this.loading_page = false;
+        this.getAllUtenti();
       }))
       .subscribe({
         next: (result: any) => {
