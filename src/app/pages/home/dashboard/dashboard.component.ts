@@ -78,7 +78,6 @@ export class DashboardComponent extends GlobalComponent implements OnInit {
   giornata() {
     this.formazioni.getGiornataAttuale()
       .subscribe({
-
         next: (result: string) => {
           this.attuale = result;
           this.calendario()
