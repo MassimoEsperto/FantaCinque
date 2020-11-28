@@ -11,7 +11,7 @@
     <mdb-card>
 
       <!--Card content-->
-      <mdb-card-body style="cursor:pointer" (click)="inserisciFormazione()">
+      <mdb-card-body>
           <div class="squadre">
               <div class="row col-4 col-sm-4 col-md-4 col-lg-4">
                   <div class="col-8 col-sm-8 col-md-6 col-lg-6  punteggio">
@@ -37,6 +37,7 @@
                   </div>
               </div>
           </div>
+          <my-button [submit]="false" [color]="'primary'" [block]="true"  [label]="'INSERISCI FORMAZIONE'" (myClick)="inserisciFormazione()"></my-button>
       </mdb-card-body>
   
   </mdb-card>
