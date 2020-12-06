@@ -1,0 +1,23 @@
+<div *ngIf="!loading_page" class="page">
+    <mat-accordion class="rose-headers-align" multi>
+        <div *ngFor="let item of listaRose">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{item.squadra}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div></div>
+                        <img src="assets/upload/utente_{{item.id}}.png" class="avatar" width="24px" />
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <div *ngFor="let ele of item.lista">
+                    {{ele.ruolo}} {{ele.calciatore}}
+                </div>
+
+            </mat-expansion-panel>
+        </div>
+
+    </mat-accordion>
+</div>
