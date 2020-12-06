@@ -31,6 +31,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
   //dichiara le variabili
   rosa = [];
   squadra = [];
+  precedente = [];
   attuale: string;
 
 
@@ -154,9 +155,11 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
     this.service.getPartitaAttuale(id_utente)
       .subscribe({
 
-        next: (result: string) => {
-          this.attuale = result;
+        next: (result: any) => {
+          this.attuale = result.attuale;
+          this.precedente = result.precedente;
           this.calendario();
+
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -196,10 +199,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          if (!sfidante)
-            this.rosa = result //assegna la rosa
-          else
-            this.calcolaRosa(result, sfidante);
+          this.calcolaRosa(result, sfidante);
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -236,15 +236,36 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
    */
   calcolaRosa(lista: any, sfidante: any) {
 
-    let avviabile = []
-    for (let ele of lista) {
-      let doppiato = sfidante.some(x => x.id == ele.id);
-      if (!doppiato)
-        avviabile.push(ele);
+    if (sfidante) {
+      let avviabile = []
+      for (let ele of lista) {
+        let doppiato = sfidante.some(x => x.id == ele.id);
+        if (!doppiato)
+          avviabile.push(ele);
+      }
+      this.calcolaPrecedente(avviabile);
+    } else {
+      this.calcolaPrecedente(lista);
     }
+  }
 
-    this.rosa = avviabile;
-
+  calcolaPrecedente(lista) {
+    
+    let pre = []
+    let post = []
+    if (this.precedente.length) {
+      for (let item of lista) {
+        let present = this.precedente.some(x => x.id_calciatore == item.id);
+        if (present) {
+          pre.push(item);
+        }
+        else {
+          post.push(item)
+        }
+      }
+    }
+    this.rosa = post;
+    this.squadra=pre;
   }
 
   /**
@@ -257,16 +278,16 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
 
     let id_casa = this.service.id_utente();
     let prossimo = palinsesto.find(x => x['partita'] == this.attuale);
-    if(!prossimo){
+    if (!prossimo) {
       this.spinner.clear();
       this.alert.error("Non sono previste partite col tuo account");
-    }else{
-    if (id_casa == prossimo.id_casa) {
-      this.getRosaCasa(prossimo.id_casa, false);
     } else {
-      this.getRosaSfidante(prossimo.id_trasferta, prossimo.id_casa);
+      if (id_casa == prossimo.id_casa) {
+        this.getRosaCasa(prossimo.id_casa, false);
+      } else {
+        this.getRosaSfidante(prossimo.id_trasferta, prossimo.id_casa);
+      }
     }
-  }
   }
 
 }
