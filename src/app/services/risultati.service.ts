@@ -30,6 +30,7 @@ export class RisultatiService extends HttpSenderService {
       map((res) => {
 
         let classifiche: any = res['data'];
+      
         let girone: string = classifiche[0].girone;
         let risultati = [];
         let result = []
