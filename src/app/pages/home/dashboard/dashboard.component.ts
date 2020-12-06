@@ -26,6 +26,7 @@ export class DashboardComponent extends GlobalComponent implements OnInit {
   }
 
   attuale: string;
+  precedente: string;
   classifiche: any;
   headElements = ['SQUADRA', 'GOL', 'PT'];
   palinsesto: any;
@@ -52,7 +53,6 @@ export class DashboardComponent extends GlobalComponent implements OnInit {
       .subscribe({
         next: (result: any) => {
           this.classifiche = result
-
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -80,6 +80,8 @@ export class DashboardComponent extends GlobalComponent implements OnInit {
       .subscribe({
         next: (result: string) => {
           this.attuale = result;
+          let tmp:number=Number(result)-1
+          this.precedente=tmp?tmp.toString():""
           this.calendario()
         },
         error: (error: any) => {
