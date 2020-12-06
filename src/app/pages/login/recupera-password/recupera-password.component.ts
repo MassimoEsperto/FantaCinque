@@ -34,7 +34,7 @@ export class RecuperaPasswordComponent extends GlobalComponent implements OnInit
     let usr = element.value;
     this.loading_btn = true;
 
-    this.service.recupera(usr.username, usr.mail)
+    this.service.recupera(usr.username, usr.email)
       .pipe(finalize(() => this.resetLoading()))
       .subscribe({
         next: (result: any) => {
