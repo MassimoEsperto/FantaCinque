@@ -8,6 +8,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { DashboardComponent } from '../pages/home/dashboard/dashboard.component';
 import { FormazioneComponent } from '../pages/home/formazione/formazione.component';
 import { InfoUtenteComponent } from '../pages/home/info-utente/info-utente.component';
+import { RoseUtentiComponent } from '../pages/home/rose-utenti/rose-utenti.component';
 
 
 
@@ -36,6 +37,10 @@ const routes: Routes = [
             {
                 path: 'info-utente',
                 component: InfoUtenteComponent
+            },
+            {
+                path: 'rose-utenti',
+                component: RoseUtentiComponent
             }
         ]
     }
