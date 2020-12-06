@@ -137,3 +137,10 @@
 ::-webkit-scrollbar-thumb:hover {
 	background: #b30000;
 }
+
+.my-flex-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
