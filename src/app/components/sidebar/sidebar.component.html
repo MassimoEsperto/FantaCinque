@@ -29,6 +29,10 @@
         <mdb-icon fas icon="umbrella-beach" class="white-text pr-2"></mdb-icon>
         <a class="nav-link waves-light" routerLink="/home/calendario" mdbWavesEffect>CALENDARIO RISULTATI</a>
       </li>
+      <li *ngIf="isPlayer" class="nav-item my-flex-start">
+        <mdb-icon fas icon="walking" class="white-text pr-2"></mdb-icon>
+        <a class="nav-link waves-light" routerLink="/home/rose-utenti" mdbWavesEffect>ROSE UTENTI</a>
+      </li>
       <li class="nav-item my-flex-start">
         <mdb-icon fas icon="user-alt-slash" class="white-text pr-2"></mdb-icon>
         <a class="nav-link waves-light" (click)="logOut()" mdbWavesEffect>Log Out</a>
