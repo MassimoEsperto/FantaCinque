@@ -52,7 +52,14 @@ export class FormazioniService extends HttpSenderService {
     return this.http.get<any>(`${this.buildURL("partita_attuale")}`, { params: params })
       .pipe(map((res) => {
 
-        return res['data'];
+        let items = res['data'];
+        let attuale = items[0].id_partita
+        let precedente = [];
+        for (let i = 1; i < items.length; i++) {
+          let item = items[i];
+          precedente.push(item);
+        }
+        return {attuale:attuale,precedente:precedente};
 
       }),
         catchError(this.handleError));
