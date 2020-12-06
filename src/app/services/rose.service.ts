@@ -47,7 +47,7 @@ export class RoseService extends HttpSenderService {
   getListaCalciatorigenerale() {
     return this.http.get(`${this.buildURL("lista_by_ruolo")}`).pipe(
       map((res) => {
-       
+
         return res['data'];
 
       }),
@@ -63,15 +63,15 @@ export class RoseService extends HttpSenderService {
         catchError(this.handleError));
   }
 
-  delete(id_utente:string) {
+  delete(id_utente: string) {
     const params = new HttpParams()
       .set('id_utente', id_utente);
 
     return this.http.get(`${this.buildURL("clean_rosa")}`, { params: params })
-      .pipe(map(res => {    
+      .pipe(map(res => {
         return 'ok';
       }),
-      catchError(this.handleError));
+        catchError(this.handleError));
   }
 
   associa(lista: any) {
@@ -82,4 +82,41 @@ export class RoseService extends HttpSenderService {
       }),
         catchError(this.handleError));
   }
+
+  getListaRose() {
+    return this.http.get(`${this.buildURL("all_rose")}`).pipe(
+      map((res) => {
+        let rose = res['data'];
+
+        let squadra: string = rose[0].squadra;
+        let result = []
+        let formazione = [];
+
+        for (let rosa of rose) {
+          if (rosa.squadra == squadra) {
+            formazione.push(rosa)
+          }
+          else {
+
+            let single = { squadra: squadra.replace(" ", "").replace(" ", "").trim(), id: rosa.id_utente, lista: formazione }
+            result.push(single)
+            formazione = []
+            formazione.push(rosa)
+            squadra = rosa.squadra;
+
+          }
+        }
+        squadra = rose[rose.length - 1].squadra;
+        let single = { squadra: squadra, lista: formazione }
+        result.push(single)
+
+        return result;
+
+
+      }),
+      catchError(this.handleError));
+  }
+
+
+
 }
