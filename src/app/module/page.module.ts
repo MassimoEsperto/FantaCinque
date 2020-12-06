@@ -17,6 +17,7 @@ import { GestioneUtentiComponent } from '../pages/home/gestione-admin/gestione-u
 import { CalcoloVotiComponent } from '../pages/home/gestione-admin/calcolo-voti/calcolo-voti.component';
 import { GestioneRoseComponent } from '../pages/home/gestione-admin/gestione-rose/gestione-rose.component';
 import { GestioneSquadreComponent } from '../pages/home/gestione-admin/gestione-squadre/gestione-squadre.component';
+import { RoseUtentiComponent } from '../pages/home/rose-utenti/rose-utenti.component';
 
 
 
@@ -33,7 +34,8 @@ import { GestioneSquadreComponent } from '../pages/home/gestione-admin/gestione-
     CalcoloVotiComponent,
     RisultatiComponent,
     GestioneRoseComponent,
-    GestioneSquadreComponent
+    GestioneSquadreComponent,
+    RoseUtentiComponent
   ],
   imports: [
     CommonModule,
