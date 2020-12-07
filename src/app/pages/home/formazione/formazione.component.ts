@@ -236,21 +236,15 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
    */
   calcolaRosa(lista: any, sfidante: any) {
 
-    if (sfidante) {
-      let avviabile = []
-      for (let ele of lista) {
-        let doppiato = sfidante.some(x => x.id == ele.id);
-        if (!doppiato)
-          avviabile.push(ele);
-      }
-      this.calcolaPrecedente(avviabile);
-    } else {
-      this.calcolaPrecedente(lista);
+    for (let ele of lista) {
+      let doppiato = sfidante.some(x => x.id == ele.id);
+      ele.disabled = doppiato;
     }
+
+    this.calcolaPrecedente(lista);
   }
 
   calcolaPrecedente(lista) {
-    
     let pre = []
     let post = []
     if (this.precedente.length) {
@@ -263,9 +257,12 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
           post.push(item)
         }
       }
+      this.rosa = post;
+    } else {
+      this.rosa = lista;
     }
-    this.rosa = post;
-    this.squadra=pre;
+
+    this.squadra = pre;
   }
 
   /**
@@ -283,7 +280,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
       this.alert.error("Non sono previste partite col tuo account");
     } else {
       if (id_casa == prossimo.id_casa) {
-        this.getRosaCasa(prossimo.id_casa, false);
+        this.getRosaCasa(prossimo.id_casa, []);
       } else {
         this.getRosaSfidante(prossimo.id_trasferta, prossimo.id_casa);
       }
