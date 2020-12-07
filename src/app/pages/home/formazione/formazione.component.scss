@@ -144,3 +144,8 @@
 	justify-content: center;
 	flex-wrap: wrap;
 }
+
+.rosa-box.cdk-drag-disabled {
+	background: #ccc;
+	cursor: default;
+  }
