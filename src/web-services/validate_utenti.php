@@ -30,7 +30,7 @@ if(isset($postdata) && !empty($postdata))
 	<title>HTML email</title>
 	</head>
 	<body>
-	<p>Account fantacinque aggiornato!</p>
+	<p>Account WorldWideFantashit aggiornato!</p>
 	<table>
 	<tr>
 	<th>Username</th>
@@ -44,7 +44,7 @@ if(isset($postdata) && !empty($postdata))
 	</tr>
 	</table>
     <br>
-    <a href='http://fantashitcup.altervista.org/fantacinque/index.html'>Visit FantaCinque.com!</a>
+    <a href='http://fantashitcup.altervista.org/WorldWideFantashit/index.html'>Visit WorldWideFantashit.com!</a>
 	</body>
 	</html>
 	</body>
@@ -56,7 +56,7 @@ if(isset($postdata) && !empty($postdata))
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 	// More headers
-	$headers .= 'From: <fantacinque@shitcup.com>' . "\r\n";
+	$headers .= 'From: <WorldWideFantashit@shitcup.com>' . "\r\n";
 
 	// Update.
 	$sql = "UPDATE `utenti` SET `ruolo`='{$id_ruolo}' WHERE `username` = '{$username}' LIMIT 1";
