@@ -91,14 +91,17 @@ export class RoseService extends HttpSenderService {
         let squadra: string = rose[0].squadra;
         let result = []
         let formazione = [];
-
+        let id_utente="";
+        
         for (let rosa of rose) {
+          
           if (rosa.squadra == squadra) {
+            id_utente=rosa.id_utente;
             formazione.push(rosa)
           }
           else {
 
-            let single = { squadra: squadra.replace(" ", "").replace(" ", "").trim(), id: rosa.id_utente, lista: formazione }
+            let single = { squadra: squadra.replace(" ", "").replace(" ", "").trim(), id: id_utente, lista: formazione }
             result.push(single)
             formazione = []
             formazione.push(rosa)
