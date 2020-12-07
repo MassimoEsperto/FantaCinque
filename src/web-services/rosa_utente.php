@@ -15,7 +15,7 @@ if(trim($id_user) === '')
 }
 
  
-$sql = "SELECT l.id_calciatore as id,l.nome_calciatore as nome,l.ruolo as tipo "; 
+$sql = "SELECT l.id_calciatore as id,l.nome_calciatore as nome,l.ruolo as tipo,false as disabled "; 
 $sql .="FROM lista_calciatori l,rosa_utente a ";
 $sql .="WHERE a.id_utente='{$id_user}' and a.id_calciatore=l.id_calciatore ";
 $sql .="ORDER BY tipo DESC,id ";
