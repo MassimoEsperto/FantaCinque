@@ -110,7 +110,8 @@ export class RoseService extends HttpSenderService {
           }
         }
         squadra = rose[rose.length - 1].squadra;
-        let single = { squadra: squadra, lista: formazione }
+        id_utente= rose[rose.length - 1].id_utente;
+        let single = { squadra: squadra.replace(" ", "").replace(" ", "").trim(), id: id_utente, lista: formazione }
         result.push(single)
 
         return result;
