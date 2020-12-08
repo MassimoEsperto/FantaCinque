@@ -59,7 +59,7 @@ export class FormazioniService extends HttpSenderService {
           let item = items[i];
           precedente.push(item);
         }
-        return {attuale:attuale,precedente:precedente};
+        return { attuale: attuale, precedente: precedente };
 
       }),
         catchError(this.handleError));
@@ -82,11 +82,75 @@ export class FormazioniService extends HttpSenderService {
 
     return this.http.get<any>(`${this.buildURL("formazioni")}`, { params: params })
       .pipe(map((res) => {
-
-        return res['data'];
+        let forma = this.getSchieramenti(res['data']);   
+        return forma;
 
       }),
         catchError(this.handleError));
+  }
+
+
+  getSchieramenti(input: any) {
+
+    let squadra: string = input[0].id_utente;
+    let schieramenti = [];
+    let result = []
+    for (let singolo of input) {
+      if (singolo.id_utente == squadra) {
+        schieramenti.push(singolo)
+      }
+      else {
+        if (schieramenti.length > 1) {
+          for (let i = 1; i < schieramenti.length; i++)
+            result.push(schieramenti[i])
+        } else {
+          let item = schieramenti[0];
+          for (let j = 1; j < 6; j++) {
+            let record = {
+              "id_partita": item.id_partita,
+              "girone": item.girone,
+              "squadra": item.squadra,
+              "id_utente": item.id_utente,
+              "schieramento": j,
+              "id_calciatore": "0",
+              "calciatore": "NON INSERITO",
+              "ruolo": "N",
+              "voto": null
+            }
+            result.push(record)
+          }
+
+
+        }
+        schieramenti = []
+        schieramenti.push(singolo)
+        squadra = singolo.id_utente;
+
+      }
+    }
+    if (schieramenti.length > 1) {
+      for (let i = 1; i < schieramenti.length; i++)
+        result.push(schieramenti[i])
+    } else {
+      let item = schieramenti[0];
+      for (let j = 1; j < 6; j++) {
+        let record = {
+          "id_partita": item.id_partita,
+          "girone": item.girone,
+          "squadra": item.squadra,
+          "id_utente": item.id_utente,
+          "schieramento": j,
+          "id_calciatore": "0",
+          "calciatore": "NON INSERITO",
+          "ruolo": "N",
+          "voto": null
+        }
+        result.push(record)
+      }
+    }
+    return result;
+
+
   }
 
 
@@ -173,7 +237,7 @@ export class FormazioniService extends HttpSenderService {
         catchError(this.handleError));
   }
 
-  calendario(payload: any): Observable<any[]> {
+  calcolaGiornata(payload: any): Observable<any[]> {
 
     return this.http.post(`${this.buildURL("calcolo")}`, { data: payload })
       .pipe(map((res) => {
