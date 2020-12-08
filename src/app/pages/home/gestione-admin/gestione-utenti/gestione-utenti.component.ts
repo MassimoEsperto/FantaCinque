@@ -47,7 +47,6 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
       .subscribe({
         next: (result: Utente[]) => {
           this.utenti = result;
-          console.log("utenti : "+JSON.stringify( this.utenti ));
         },
         error: (error: any) => {
           this.alert.error(error);
