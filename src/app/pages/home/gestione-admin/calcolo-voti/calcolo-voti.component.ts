@@ -22,7 +22,7 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
   }
 
 
-  ngOnInit() { this.palinsesto() }
+  ngOnInit() { this.giornataDaCalcolare() }
 
   formazione: any;
   risultati = [];
@@ -131,7 +131,7 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
 
   }
 
-  palinsesto() {
+  giornataDaCalcolare() {
     this.loading_page = true;
     this.spinner.view();
 
@@ -139,7 +139,8 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
       .subscribe({
 
         next: (result: string) => {
-          this.giornataCompleta(result)
+          let giornata:number=Number(result)-1
+          this.giornataCompleta(giornata.toString())
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -150,9 +151,9 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
   }
 
 
-  calendario(payload: any) {
+  calcolaGiornata(payload: any) {
 
-    this.service.calendario(payload)
+    this.service.calcolaGiornata(payload)
       .pipe(finalize(() => {
           this.loading_btn = false;
       }
@@ -177,7 +178,7 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
       .subscribe({
 
         next: (result: any) => {
-          this.calendario(result)
+          this.calcolaGiornata(result)
         },
         error: (error: any) => {
           this.alert.error(error);
