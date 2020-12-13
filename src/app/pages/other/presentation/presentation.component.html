@@ -1,33 +1,50 @@
-<div class="presentation pa-16">
+<div *ngIf="!errore" class="presentation pa-16">
 
-  <div class="flex-center">
-    <div class="col-sm-12 col-md-6">
-		<img src="assets/img/shit.png" alt="ShitCup" class="immagine">
+	<div class="flex-center">
+		<div class="col-sm-12 col-md-6">
+			<img src="assets/img/shit.png" alt="ShitCup" class="immagine">
+		</div>
+
 	</div>
-  
-  </div>
-  
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-		<img src="assets/img/campo_animato.gif" alt="ShitCup" class="immagine">
-	</div>
-   <div class="col-sm-12 col-md-6 row">
-	
-		   <div class="col-sm-12 col-md-6">
-		   </div>
-		   <div class="col-sm-12 col-md-6">
-        <a routerLink="/sign-in">
-				<img src="assets/img/enter.gif" alt="ShitCup" class="immagine">
-      </a>
+
+	<div class="row">
+		<div class="col-sm-12 col-md-6">
+			<img src="assets/img/campo_animato.gif" alt="ShitCup" class="immagine">
+		</div>
+		<div class="col-sm-12 col-md-6 row">
+
+			<div class="col-sm-12 col-md-6">
+			</div>
+			<div class="col-sm-12 col-md-6">
+				<a routerLink="/sign-in">
+					<img src="assets/img/enter.gif" alt="ShitCup" class="immagine">
+				</a>
 			</div>
 			<div class="col-sm-12">
-				 <p>LA SHIT CUP E' DIVENTATA UN ELEMENTO DI CULTO E DI STILE, CARATTERISTICA FONDAMENTALE 
-				 PER TUTTI I FANTALLENATORI IN CERCA DI RISCATTO DA UNA STAGIONE FALLIMENTARE.</p>
+				<p>LA SHIT CUP E' DIVENTATA UN ELEMENTO DI CULTO E DI STILE, CARATTERISTICA FONDAMENTALE
+					PER TUTTI I FANTALLENATORI IN CERCA DI RISCATTO DA UNA STAGIONE FALLIMENTARE.</p>
+			</div>
 		</div>
 	</div>
-  </div>
-  <a class="fisso" href="https://www.linkedin.com/in/emanuele-de-carlo-12361199">
-    <img src="assets/img/firma.png" alt="ShitCup" class="firma">
-  </a>
+	<a class="fisso" href="https://www.linkedin.com/in/emanuele-de-carlo-12361199">
+		<img src="assets/img/firma.png" alt="ShitCup" class="firma">
+	</a>
 
+</div>
+
+<div *ngIf="errore&&verifica" class="presentation pa-16">
+	<div class="flex-center">
+		<div class="col-sm-12 col-md-6">
+			<img src="assets/img/shit.png" alt="ShitCup" class="immagine">
+		</div>
+
+	</div>
+	<div class="pt-16">
+		<h5>DEVI AGGIORNARELA VERSIONE</h5>
+		<p>versione locale: {{verifica.locale}}</p>
+		<p>versione applicazione: {{verifica.applicazione}}</p>
+		<hr>
+		<p>Soluzione indicata:</p>
+		<p>Svuotare le cache e cancellare i cookie..</p>
+	</div>
 </div>
