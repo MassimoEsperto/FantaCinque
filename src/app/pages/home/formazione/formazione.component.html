@@ -7,7 +7,7 @@
         <div id="squadra" cdkDropList [cdkDropListData]="squadra" cdkDropListConnectedTo="rosa" class="squadra-list"
           (cdkDropListDropped)="drop($event)" [cdkDropListEnterPredicate]="validate">
           <div class="squadra-box" *ngFor="let number of sortedByRuoli()" cdkDrag [cdkDragData]="number">
-            <div class="pt-16">{{number.tipo+" "+number.nome.substring(0, 9)}}</div>
+            <div class="pt-16">{{number.tipo+" "+number.nome.substring(0, 10)}}</div>
           </div>
         </div>
 
