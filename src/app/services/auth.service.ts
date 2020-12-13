@@ -30,7 +30,7 @@ export class AuthService extends HttpSenderService {
     const params = new HttpParams()
       .set('user', username).set('pass', pass);
 
-    return this.http.get<MyToken[]>(`${this.buildURL("login")}`, { params: params })
+    return this.http.get<MyToken[]>(`${this.buildURL("sign-in")}`, { params: params })
       .pipe(map((res) => {
         if ('negato' == res['data']) {
 
@@ -110,4 +110,17 @@ export class AuthService extends HttpSenderService {
        catchError(this.handleError));
    }
   
+
+   verificaVersioneWeb() {
+    return this.http.get(`${this.buildURL("versione")}`)
+      .pipe(map((res) => {
+        let verifica={
+          applicazione:res['data'],
+          locale:this.versione(),
+          error:res['data']!=this.versione()
+        }
+        return verifica;
+      }),
+      catchError(this.handleError));
+  }
 }
