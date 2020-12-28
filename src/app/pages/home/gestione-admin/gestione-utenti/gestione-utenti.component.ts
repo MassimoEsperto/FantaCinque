@@ -19,6 +19,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
 
   utenti: Utente[];
   editField: string;
+  loading_this_page:boolean=true;
 
   constructor(
     private spinner: SpinnerService,
@@ -36,13 +37,13 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
 
   /* CHIAMATE AI SERVIZI */
   getAllUtenti() {
-    this.loading_page = true;
+    this.loading_this_page = true;
     this.spinner.view();
 
     this.admin.getUtenti()
       .pipe(finalize(() => {
         this.spinner.clear(),
-          this.loading_page = false;
+          this.loading_this_page = false;
       }))
       .subscribe({
         next: (result: Utente[]) => {
@@ -56,7 +57,7 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
 
   remove(id: any, id_utente: string) {
 
-    this.loading_page = true;
+    this.loading_this_page = true;
     this.spinner.view();
     this.admin.delete(id_utente)
       .pipe(finalize(() => {
@@ -74,12 +75,12 @@ export class GestioneUtentiComponent extends GlobalComponent implements OnInit {
   }
 
   validate(user: Utente) {
-    this.loading_page = true;
+    this.loading_this_page = true;
     this.spinner.view();
     this.admin.validate(user)
       .pipe(finalize(() => {
         this.spinner.clear(),
-          this.loading_page = false;
+          this.loading_this_page = false;
       }))
       .subscribe({
         next: (result: any) => {
