@@ -26,6 +26,8 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
 
   formazione: any;
   risultati = [];
+  giornataAttuale: number;
+  giornateDaCalcolare: any;
 
   importVoti(event: any) {
     let file: File
@@ -110,12 +112,14 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
 
 
   /* CHIAMATA AI SERVIZI */
-  giornataCompleta(gio: string) {
+  giornataCompleta() {
 
-    this.service.getFormazioni(gio)
+    this.loading_btn = true;
+
+    this.service.getFormazioni(this.giornataAttuale.toString())
       .pipe(finalize(() => {
         this.spinner.clear(),
-          this.loading_page = false;
+          this.loading_btn = false;
       }
       ))
       .subscribe({
@@ -131,16 +135,18 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
 
   }
 
+ 
+
   giornataDaCalcolare() {
     this.loading_page = true;
     this.spinner.view();
 
-    this.service.getGiornataAttuale()
+    this.service.getGiornateCalcolate()
       .subscribe({
 
-        next: (result: string) => {
-          let giornata:number=Number(result)-1
-          this.giornataCompleta(giornata.toString())
+        next: (result: any) => {
+          this.giornateDaCalcolare = result;
+          this.giornataAttuale = result.incalcolate[0];
         },
         error: (error: any) => {
           this.alert.error(error);
@@ -155,7 +161,7 @@ export class CalcoloVotiComponent extends GlobalComponent implements OnInit {
 
     this.service.calcolaGiornata(payload)
       .pipe(finalize(() => {
-          this.loading_btn = false;
+        this.loading_btn = false;
       }
       ))
       .subscribe({
