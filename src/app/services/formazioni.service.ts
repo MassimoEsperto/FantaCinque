@@ -45,6 +45,27 @@ export class FormazioniService extends HttpSenderService {
       catchError(this.handleError));
   }
 
+  getGiornateCalcolate() {
+    return this.http.get(`${this.buildURL("giornate_calcolate")}`).pipe(
+      map((res) => {
+
+        let giaCalcolate = [];
+        let daCalcolare = [];
+        let varie: any = res['data']
+        for (let tmp of varie) {
+          if (tmp.calcolato=='1')
+            giaCalcolate.push(Number(tmp.giornata))
+          else
+            daCalcolare.push(Number(tmp.giornata))
+        }
+
+        let result = { calcolate: giaCalcolate, incalcolate: daCalcolare }
+        return result;
+
+      }),
+      catchError(this.handleError));
+  }
+
   getPartitaAttuale(id_user: string) {
     const params = new HttpParams()
       .set('id_user', id_user);
@@ -82,7 +103,7 @@ export class FormazioniService extends HttpSenderService {
 
     return this.http.get<any>(`${this.buildURL("formazioni")}`, { params: params })
       .pipe(map((res) => {
-        let forma = this.getSchieramenti(res['data']);   
+        let forma = this.getSchieramenti(res['data']);
         return forma;
 
       }),
