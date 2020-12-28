@@ -80,12 +80,12 @@ export class GestioneRoseComponent extends GlobalComponent implements OnInit {
 
   listaCalciatori() {
 
-    this.loading_page = true;
+    this.loading_btn = true;
     this.spinner.view();
 
     this.service.getListaCalciatori()
       .pipe(finalize(() => {
-          this.loading_page = false;
+          this.loading_btn = false;
       }
       ))
       .subscribe({
