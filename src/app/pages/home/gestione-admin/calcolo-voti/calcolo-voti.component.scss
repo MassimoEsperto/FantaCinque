@@ -69,3 +69,12 @@ input[type=number] {
   background-color: red;
   border-top-right-radius: 8px;
 }
+
+.selezionata{
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
