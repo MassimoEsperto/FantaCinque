@@ -38,12 +38,12 @@ export class GestioneSquadreComponent extends GlobalComponent implements OnInit 
   /* CHIAMATE AI SERVIZI */
   listaCalciatori() {
 
-    this.loading_page = true;
+    this.loading_btn = true;
     this.spinner.view();
 
     this.service.getListaCalciatorigenerale()
       .pipe(finalize(() => {
-        this.loading_page = false;
+        this.loading_btn = false;
       }
       ))
       .subscribe({
