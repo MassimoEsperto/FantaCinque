@@ -162,6 +162,8 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
 
         },
         error: (error: any) => {
+          console.log("getPartitaAttuale: ",error);
+          this.spinner.clear();
           this.alert.error(error);
 
         }
@@ -178,6 +180,7 @@ export class FormazioneComponent extends GlobalComponent implements OnInit {
           this.prossimoMatch(result);
         },
         error: (error: any) => {
+          this.spinner.clear();
           this.alert.error(error);
         }
       })

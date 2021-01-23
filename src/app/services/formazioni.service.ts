@@ -53,7 +53,7 @@ export class FormazioniService extends HttpSenderService {
         let daCalcolare = [];
         let varie: any = res['data']
         for (let tmp of varie) {
-          if (tmp.calcolato=='1')
+          if (tmp.calcolato == '1')
             giaCalcolate.push(Number(tmp.giornata))
           else
             daCalcolare.push(Number(tmp.giornata))
@@ -74,11 +74,15 @@ export class FormazioniService extends HttpSenderService {
       .pipe(map((res) => {
 
         let items = res['data'];
-        let attuale = items[0].id_partita
         let precedente = [];
-        for (let i = 1; i < items.length; i++) {
-          let item = items[i];
-          precedente.push(item);
+        let attuale: any;
+        if (items) {
+          attuale = items[0].id_partita
+
+          for (let i = 1; i < items.length; i++) {
+            let item = items[i];
+            precedente.push(item);
+          }
         }
         return { attuale: attuale, precedente: precedente };
 
